@@ -5,8 +5,10 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const path = require('path');
 
-app.use(express.static(path.join(__dirname + "public")))
-
+app.use(express.static(path.join(__dirname + "/public")))
+app.get('*', function(req, res) {
+  res.sendFile('index.html', {root: path.join(__dirname, './public')});
+});
 var jsonParser = bodyParser.json()
 //var urlencodedParser = bodyParser.urlencoded({extended: false})
 
